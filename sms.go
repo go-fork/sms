@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/zinzinday/go-sms/config"
-	"github.com/zinzinday/go-sms/model"
-	"github.com/zinzinday/go-sms/retry"
+	"github.com/go-fork/sms/config"
+	"github.com/go-fork/sms/model"
+	"github.com/go-fork/sms/retry"
 )
 
 // Module represents the main SMS module that manages providers and handles message sending

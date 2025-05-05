@@ -8,10 +8,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/go-fork/sms/client"
+	"github.com/go-fork/sms/config"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/zinzinday/go-sms/client"
-	"github.com/zinzinday/go-sms/config"
 )
 
 // TestClientCreation tests client initialization with different configurations

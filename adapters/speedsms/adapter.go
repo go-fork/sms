@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/go-fork/sms/client"
+	"github.com/go-fork/sms/config"
+	"github.com/go-fork/sms/model"
 	"github.com/spf13/viper"
-	"github.com/zinzinday/go-sms/client"
-	"github.com/zinzinday/go-sms/config"
-	"github.com/zinzinday/go-sms/model"
 )
 
 const (

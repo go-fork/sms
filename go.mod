@@ -1,4 +1,4 @@
-module github.com/zinzinday/go-sms
+module github.com/go-fork/sms
 
 go 1.18
 

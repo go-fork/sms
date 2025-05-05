@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/go-fork/sms"
+	"github.com/go-fork/sms/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
-	"github.com/zinzinday/go-sms"
-	"github.com/zinzinday/go-sms/model"
 )
 
 // MockProvider implements model.Provider for testing

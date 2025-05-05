@@ -30,7 +30,7 @@ cd go-sms
 
 3. Add the upstream repository as a remote:
 ```bash
-git remote add upstream https://github.com/zinzinday/go-sms.git
+git remote add upstream https://github.com/go-fork/sms.git
 ```
 
 4. Create a branch for your work:
@@ -133,7 +133,7 @@ Adding a new SMS provider requires creating a new adapter. Here's how:
 2. Initialize a new Go module:
    ```bash
    cd adapters/newprovider
-   go mod init github.com/zinzinday/go-sms/adapters/newprovider
+   go mod init github.com/go-fork/sms/adapters/newprovider
    ```
 
 3. Create the following files:

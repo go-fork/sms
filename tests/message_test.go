@@ -3,8 +3,8 @@ package tests
 import (
 	"testing"
 
+	"github.com/go-fork/sms/model"
 	"github.com/stretchr/testify/assert"
-	"github.com/zinzinday/go-sms/model"
 )
 
 // TestMessageCreation tests creating message models

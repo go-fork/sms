@@ -5,8 +5,8 @@ This adapter enables sending SMS messages through the SpeedSMS API using the go-
 ## Installation
 
 ```bash
-go get github.com/zinzinday/go-sms
-go get github.com/zinzinday/go-sms/adapters/speedsms
+go get github.com/go-fork/sms
+go get github.com/go-fork/sms/adapters/speedsms
 ```
 
 ## Configuration
@@ -57,9 +57,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/zinzinday/go-sms"
-	"github.com/zinzinday/go-sms/adapters/speedsms"
-	"github.com/zinzinday/go-sms/model"
+	"github.com/go-fork/sms"
+	"github.com/go-fork/sms/adapters/speedsms"
+	"github.com/go-fork/sms/model"
 )
 
 func main() {

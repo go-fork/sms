@@ -26,12 +26,12 @@ This comprehensive guide explains how to use the go-sms module effectively in yo
 
 ```bash
 # Install the core module
-go get github.com/zinzinday/go-sms
+go get github.com/go-fork/sms
 
 # Install only the provider adapters you need
-go get github.com/zinzinday/go-sms/adapters/twilio
-go get github.com/zinzinday/go-sms/adapters/esms
-go get github.com/zinzinday/go-sms/adapters/speedsms
+go get github.com/go-fork/sms/adapters/twilio
+go get github.com/go-fork/sms/adapters/esms
+go get github.com/go-fork/sms/adapters/speedsms
 ```
 
 ## Configuration
@@ -89,8 +89,8 @@ module, err := sms.NewModule("/path/to/your/config.yaml")
 package main
 
 import (
-    "github.com/zinzinday/go-sms"
-    "github.com/zinzinday/go-sms/adapters/twilio"
+    "github.com/go-fork/sms"
+    "github.com/go-fork/sms/adapters/twilio"
 )
 
 func main() {
@@ -126,9 +126,9 @@ import (
     "fmt"
     "time"
     
-    "github.com/zinzinday/go-sms"
-    "github.com/zinzinday/go-sms/adapters/twilio"
-    "github.com/zinzinday/go-sms/model"
+    "github.com/go-fork/sms"
+    "github.com/go-fork/sms/adapters/twilio"
+    "github.com/go-fork/sms/model"
 )
 
 func main() {
@@ -530,4 +530,4 @@ If you encounter issues:
 
 ## Need More Help?
 
-Visit the [GitHub repository](https://github.com/zinzinday/go-sms) for more examples, documentation, and community support.
+Visit the [GitHub repository](https://github.com/go-fork/sms) for more examples, documentation, and community support.

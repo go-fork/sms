@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/go-fork/sms/config"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/zinzinday/go-sms/config"
 )
 
 // TestLoadConfig tests loading configurations from various formats

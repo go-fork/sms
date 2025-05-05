@@ -28,7 +28,7 @@ Set up the basic structure for the Go SMS module including directory layout, cor
 ## Implementation Requirements
 
 ### Module Configuration
-- Initialize Go module with name `github.com/zinzinday/go-sms`
+- Initialize Go module with name `github.com/go-fork/sms`
 - Add initial dependencies:
   - `github.com/spf13/viper` (v1.15.0+)
   - `github.com/go-resty/resty/v2` (v2.7.0+)

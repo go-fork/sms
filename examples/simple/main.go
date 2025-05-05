@@ -7,9 +7,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/zinzinday/go-sms"
-	"github.com/zinzinday/go-sms/adapters/twilio" // Import the Twilio adapter
-	"github.com/zinzinday/go-sms/model"
+	"github.com/go-fork/sms"
+	"github.com/go-fork/sms/adapters/twilio" // Import the Twilio adapter
+	"github.com/go-fork/sms/model"
 )
 
 func main() {

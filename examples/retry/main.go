@@ -8,7 +8,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/zinzinday/go-sms/retry"
+	"github.com/go-fork/sms/retry"
 )
 
 // simulateAPICall simulates an API call that might fail

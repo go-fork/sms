@@ -5,8 +5,8 @@ This adapter enables sending SMS messages and voice calls through the eSMS API u
 ## Installation
 
 ```bash
-go get github.com/zinzinday/go-sms
-go get github.com/zinzinday/go-sms/adapters/esms
+go get github.com/go-fork/sms
+go get github.com/go-fork/sms/adapters/esms
 ```
 
 ## Configuration
@@ -57,9 +57,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/zinzinday/go-sms"
-	"github.com/zinzinday/go-sms/adapters/esms"
-	"github.com/zinzinday/go-sms/model"
+	"github.com/go-fork/sms"
+	"github.com/go-fork/sms/adapters/esms"
+	"github.com/go-fork/sms/model"
 )
 
 func main() {

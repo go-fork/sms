@@ -5,8 +5,8 @@ This adapter enables sending SMS messages and making voice calls through the Twi
 ## Installation
 
 ```bash
-go get github.com/zinzinday/go-sms
-go get github.com/zinzinday/go-sms/adapters/twilio
+go get github.com/go-fork/sms
+go get github.com/go-fork/sms/adapters/twilio
 ```
 
 ## Configuration
@@ -49,9 +49,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/zinzinday/go-sms"
-	"github.com/zinzinday/go-sms/adapters/twilio"
-	"github.com/zinzinday/go-sms/model"
+	"github.com/go-fork/sms"
+	"github.com/go-fork/sms/adapters/twilio"
+	"github.com/go-fork/sms/model"
 )
 
 func main() {

@@ -16,9 +16,9 @@ Implement the SpeedSMS provider adapter as a separate Go module.
 ## Implementation Requirements
 
 ### Module Setup
-- Initialize a new Go module: `github.com/zinzinday/go-sms/adapters/speedsms`
+- Initialize a new Go module: `github.com/go-fork/sms/adapters/speedsms`
 - Add dependencies:
-  - Main SMS module (`github.com/zinzinday/go-sms`)
+  - Main SMS module (`github.com/go-fork/sms`)
   - HTTP client (`github.com/go-resty/resty/v2`)
 
 ### SpeedSMS Configuration

@@ -32,7 +32,7 @@ A clear and concise description of what you expected to happen.
 package main
 
 import (
-    "github.com/zinzinday/go-sms"
+    "github.com/go-fork/sms"
     // other imports
 )
 

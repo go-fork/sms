@@ -22,7 +22,7 @@ A clear and concise description of any alternative solutions or features you've 
 package main
 
 import (
-    "github.com/zinzinday/go-sms"
+    "github.com/go-fork/sms"
     // other imports
 )
 

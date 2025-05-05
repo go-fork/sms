@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/go-fork/sms/config"
 	"github.com/go-resty/resty/v2"
-	"github.com/zinzinday/go-sms/config"
 )
 
 // Client represents an HTTP client for making API requests to providers

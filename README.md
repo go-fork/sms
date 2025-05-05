@@ -21,7 +21,7 @@ go-sms is a service component library that enables Go applications to send SMS m
 ### Core Module
 
 ```bash
-go get github.com/zinzinday/go-sms
+go get github.com/go-fork/sms
 ```
 
 ### Provider Adapters
@@ -30,13 +30,13 @@ Install only the provider adapters you need:
 
 ```bash
 # For Twilio
-go get github.com/zinzinday/go-sms/adapters/twilio
+go get github.com/go-fork/sms/adapters/twilio
 
 # For eSMS (Vietnam)
-go get github.com/zinzinday/go-sms/adapters/esms
+go get github.com/go-fork/sms/adapters/esms
 
 # For SpeedSMS (Vietnam)
-go get github.com/zinzinday/go-sms/adapters/speedsms
+go get github.com/go-fork/sms/adapters/speedsms
 ```
 
 ## Quick Start
@@ -86,9 +86,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/zinzinday/go-sms"
-	"github.com/zinzinday/go-sms/adapters/twilio"
-	"github.com/zinzinday/go-sms/model"
+	"github.com/go-fork/sms"
+	"github.com/go-fork/sms/adapters/twilio"
+	"github.com/go-fork/sms/model"
 )
 
 func main() {
@@ -317,8 +317,8 @@ Benchmarks performed on standard cloud infrastructure. Your results may vary dep
 ```go
 import (
     "github.com/gin-gonic/gin"
-    "github.com/zinzinday/go-sms"
-    "github.com/zinzinday/go-sms/adapters/twilio"
+    "github.com/go-fork/sms"
+    "github.com/go-fork/sms/adapters/twilio"
 )
 
 func setupRouter(smsModule *sms.Module) *gin.Engine {
@@ -366,7 +366,7 @@ func setupRouter(smsModule *sms.Module) *gin.Engine {
 ```go
 import (
     "github.com/labstack/echo/v4"
-    "github.com/zinzinday/go-sms"
+    "github.com/go-fork/sms"
 )
 
 func setupRoutes(e *echo.Echo, smsModule *sms.Module) {
@@ -381,7 +381,7 @@ func setupRoutes(e *echo.Echo, smsModule *sms.Module) {
 ```go
 import (
     "gorm.io/gorm"
-    "github.com/zinzinday/go-sms"
+    "github.com/go-fork/sms"
 )
 
 type Notification struct {

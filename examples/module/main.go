@@ -6,8 +6,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/zinzinday/go-sms"
-	"github.com/zinzinday/go-sms/model"
+	"github.com/go-fork/sms"
+	"github.com/go-fork/sms/model"
 )
 
 // SimpleProvider is a mock provider that implements the Provider interface
