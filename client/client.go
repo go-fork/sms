@@ -15,26 +15,23 @@ type Client struct {
 	// restyClient is the underlying HTTP client from the resty library
 	restyClient *resty.Client
 
-	// config holds the client configuration
-	config *config.Config
+	// config holds the client configuration provider
+	config config.ConfigProvider
 }
 
 // NewClient creates a new HTTP client with the provided configuration
-func NewClient(config *config.Config) *Client {
-	if config == nil {
-		// Create a default configuration if none is provided
-		// This should not happen in normal operation but prevents nil pointer panics
-		defaultTimeout := 10 * time.Second
-		config = &config.Config{
-			HTTPTimeout: defaultTimeout,
-		}
+func NewClient(cfg config.ConfigProvider) *Client {
+	if cfg == nil {
+		// Return an error rather than trying to create a default configuration
+		// This makes it clear that a valid configuration is required
+		panic("config cannot be nil, must provide a valid configuration")
 	}
 
 	// Create a new resty client with the provided configuration
 	restyClient := resty.New()
 
 	// Configure timeouts
-	restyClient.SetTimeout(config.HTTPTimeout)
+	restyClient.SetTimeout(cfg.GetHTTPTimeout())
 
 	// Set reasonable defaults for connections
 	restyClient.SetTransport(&http.Transport{
@@ -48,7 +45,7 @@ func NewClient(config *config.Config) *Client {
 
 	return &Client{
 		restyClient: restyClient,
-		config:      config,
+		config:      cfg,
 	}
 }
 
