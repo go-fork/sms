@@ -1,6 +1,7 @@
 package config
 
 import (
+	"errors"
 	"fmt"
 	"time"
 
@@ -24,6 +25,49 @@ const (
 	DefaultVoiceTemplate = "Your message is {message}"
 )
 
+// Error definitions for configuration validation
+var (
+	// ErrMissingDefaultProvider indicates that the default provider is not specified
+	ErrMissingDefaultProvider = errors.New("default provider is required")
+
+	// ErrNoProvidersConfigured indicates that no providers are configured
+	ErrNoProvidersConfigured = errors.New("at least one provider must be configured")
+
+	// ErrInvalidHTTPTimeout indicates an invalid HTTP timeout value
+	ErrInvalidHTTPTimeout = errors.New("HTTP timeout must be greater than 0")
+
+	// ErrInvalidRetryAttempts indicates an invalid retry attempts value
+	ErrInvalidRetryAttempts = errors.New("retry attempts must be non-negative")
+
+	// ErrInvalidRetryDelay indicates an invalid retry delay value
+	ErrInvalidRetryDelay = errors.New("retry delay must be greater than 0")
+
+	// ErrMissingSMSTemplate indicates a missing SMS template
+	ErrMissingSMSTemplate = errors.New("SMS template is required")
+
+	// ErrMissingVoiceTemplate indicates a missing voice template
+	ErrMissingVoiceTemplate = errors.New("voice template is required")
+)
+
+// ConfigProvider defines the interface for configuration access
+type ConfigProvider interface {
+	// Get basic configuration
+	GetHTTPTimeout() time.Duration
+	GetRetryAttempts() int
+	GetRetryDelay() time.Duration
+	GetDefaultProvider() string
+
+	// Get template configuration
+	GetSMSTemplate() string
+	GetVoiceTemplate() string
+
+	// Provider configuration
+	GetProviderConfig(providerName string) (map[string]interface{}, error)
+
+	// Validation
+	Validate() error
+}
+
 // Config represents the module configuration
 type Config struct {
 	// DefaultProvider is the name of the default provider to use
@@ -46,6 +90,38 @@ type Config struct {
 
 	// Providers contains provider-specific configurations
 	Providers map[string]interface{} `mapstructure:"providers"`
+}
+
+// Implement ConfigProvider interface
+
+// GetHTTPTimeout returns the configured HTTP timeout
+func (c *Config) GetHTTPTimeout() time.Duration {
+	return c.HTTPTimeout
+}
+
+// GetRetryAttempts returns the configured retry attempts
+func (c *Config) GetRetryAttempts() int {
+	return c.RetryAttempts
+}
+
+// GetRetryDelay returns the configured retry delay
+func (c *Config) GetRetryDelay() time.Duration {
+	return c.RetryDelay
+}
+
+// GetDefaultProvider returns the name of the default provider
+func (c *Config) GetDefaultProvider() string {
+	return c.DefaultProvider
+}
+
+// GetSMSTemplate returns the configured SMS template
+func (c *Config) GetSMSTemplate() string {
+	return c.SMSTemplate
+}
+
+// GetVoiceTemplate returns the configured voice template
+func (c *Config) GetVoiceTemplate() string {
+	return c.VoiceTemplate
 }
 
 // LoadConfig loads configuration from the specified file path
@@ -113,4 +189,67 @@ func (c *Config) GetProviderConfig(providerName string) (map[string]interface{},
 	}
 
 	return config, nil
+}
+
+// Validate validates the configuration
+func (c *Config) Validate() error {
+	// Validate default provider
+	if c.DefaultProvider == "" {
+		return ErrMissingDefaultProvider
+	}
+
+	// Validate providers
+	if c.Providers == nil || len(c.Providers) == 0 {
+		return ErrNoProvidersConfigured
+	}
+
+	// Verify that the default provider exists in the configured providers
+	if _, ok := c.Providers[c.DefaultProvider]; !ok {
+		return fmt.Errorf("default provider '%s' not found in configured providers", c.DefaultProvider)
+	}
+
+	// Validate HTTP timeout
+	if c.HTTPTimeout <= 0 {
+		return ErrInvalidHTTPTimeout
+	}
+
+	// Validate retry attempts (0 means no retries, which is valid)
+	if c.RetryAttempts < 0 {
+		return ErrInvalidRetryAttempts
+	}
+
+	// Validate retry delay (only if retry attempts > 0)
+	if c.RetryAttempts > 0 && c.RetryDelay <= 0 {
+		return ErrInvalidRetryDelay
+	}
+
+	// Validate SMS template
+	if c.SMSTemplate == "" {
+		return ErrMissingSMSTemplate
+	}
+
+	// Validate voice template
+	if c.VoiceTemplate == "" {
+		return ErrMissingVoiceTemplate
+	}
+
+	return nil
+}
+
+// ValidateProviderConfig validates provider-specific configuration
+// This is a helper function that providers can use to validate their configurations
+func ValidateProviderConfig(config map[string]interface{}, requiredFields ...string) error {
+	for _, field := range requiredFields {
+		value, exists := config[field]
+		if !exists {
+			return fmt.Errorf("missing required field: %s", field)
+		}
+
+		// Check if string fields are not empty
+		if strValue, isString := value.(string); isString && strValue == "" {
+			return fmt.Errorf("field %s cannot be empty", field)
+		}
+	}
+
+	return nil
 }

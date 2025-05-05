@@ -30,7 +30,7 @@ func NewClient(config *config.Config) *Client {
 		}
 	}
 
-	// Create a new resty client with configuration
+	// Create a new resty client with the provided configuration
 	restyClient := resty.New()
 
 	// Configure timeouts
