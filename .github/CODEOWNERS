@@ -1,0 +1,22 @@
+# This file defines the code owners for the repository
+# Code owners are automatically requested for review when someone opens a PR that modifies code they own
+
+# Default owners for everything in the repo
+* @zinzinday
+
+# Core module files
+/sms.go @zinzinday
+/model/ @zinzinday
+/config/ @zinzinday
+/client/ @zinzinday
+/retry/ @zinzinday
+
+# Provider adapters
+/adapters/twilio/ @zinzinday
+/adapters/esms/ @zinzinday
+/adapters/speedsms/ @zinzinday
+
+# Documentation
+/README.md @zinzinday
+/CONTRIBUTING.md @zinzinday
+/docs/ @zinzinday

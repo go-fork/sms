@@ -1,0 +1,79 @@
+name: Go SMS CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: ['1.18', '1.19', '1.20']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+          cache: true
+
+      - name: Install dependencies
+        run: |
+          go mod download
+          go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.53.3
+
+      - name: Lint
+        run: golangci-lint run ./...
+
+      - name: Build
+        run: go build -v ./...
+
+      - name: Test with coverage
+        run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.txt
+          flags: unittests
+          fail_ci_if_error: false
+
+      - name: Build examples
+        run: |
+          for dir in examples/*/; do
+            echo "Building $dir"
+            (cd "$dir" && go build -v)
+          done
+
+  # Additional job to test adapters
+  test-adapters:
+    name: Test Provider Adapters
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: ['1.20']
+        adapter: ['twilio', 'esms', 'speedsms']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+          cache: true
+
+      - name: Build and test adapter
+        run: |
+          cd adapters/${{ matrix.adapter }}
+          go mod download
+          go build -v ./...
+          go test -v ./...

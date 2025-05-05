@@ -1,0 +1,13 @@
+module github.com/zinzinday/go-sms/adapters/speedsms
+
+go 1.18
+
+require (
+	github.com/go-resty/resty/v2 v2.7.0
+	github.com/spf13/viper v1.15.0
+	github.com/zinzinday/go-sms v0.0.0
+)
+
+// Use a replace directive for local development
+// This should be removed before publishing
+replace github.com/zinzinday/go-sms => ../../

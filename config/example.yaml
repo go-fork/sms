@@ -1,0 +1,60 @@
+# Default provider to use (must be registered through AddProvider)
+default_provider: twilio
+
+# HTTP client timeout
+http_timeout: 10s
+
+# Retry configuration
+retry_attempts: 3
+retry_delay: 500ms
+
+# Default templates
+# Available variables:
+# - {from}: Sender identifier
+# - {to}: Recipient phone number
+# - {by}: Application or service name
+# - {message}: Core message content
+# - Custom variables can be passed in the Data map
+sms_template: "Your message from {app_name}: {message}"
+voice_template: "Your message from {app_name} is {message}"
+
+# Provider configurations
+providers:
+  # Twilio configuration
+  twilio:
+    account_sid: your_account_sid
+    auth_token: your_auth_token
+    from_number: your_twilio_number
+    region: us1  # Optional, default is 'us1'
+    
+  # eSMS configuration (Vietnamese provider)
+  esms:
+    api_key: your_api_key
+    secret: your_secret_key
+    brandname: your_brandname  # Optional, if you have registered a brandname
+    sms_type: 2  # 2 for branded messages, 4 for OTP messages
+    
+  # SpeedSMS configuration (Vietnamese provider)
+  speedsms:
+    token: your_access_token
+    sender: your_sender_id  # Optional
+    
+  # Additional provider examples
+  # -----------------------------
+  
+  # Stringee configuration (Vietnamese provider)
+  stringee:
+    api_key: your_api_key
+    api_secret: your_api_secret
+    
+  # Plivo configuration
+  plivo:
+    auth_id: your_auth_id
+    auth_token: your_auth_token
+    from_number: your_plivo_number
+    
+  # Vonage/Nexmo configuration
+  vonage:
+    api_key: your_api_key
+    api_secret: your_api_secret
+    from: your_sender_id
