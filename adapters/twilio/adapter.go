@@ -68,7 +68,7 @@ type Provider struct {
 }
 
 // NewProvider creates a new Twilio provider instance
-func NewProvider(configFile string) (*Provider, error) {
+func NewProvider(configFile string) (model.Provider, error) {
 	// Load the main configuration
 	cfg, err := config.LoadConfig(configFile)
 	if err != nil {
